@@ -20,7 +20,11 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _isLoading = false;
   String _errorMessage = '';
 
+  /// Maneja el login del usuario
   void _handleLogin() async {
+    // 👇 Cierra el teclado (móvil/web)
+    FocusScope.of(context).unfocus();
+
     if (!_formKey.currentState!.validate()) return;
 
     final email = _emailController.text.trim();
@@ -36,7 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
     try {
       await authProvider.login(email, password);
 
-      // Haptic feedback on success
+      // ✅ Feedback háptico (vibración ligera)
       HapticFeedback.lightImpact();
 
       if (mounted) {
@@ -84,7 +88,7 @@ class _LoginScreenState extends State<LoginScreen> {
               children: [
                 SizedBox(height: 8.h),
 
-                // Logo (puedes reemplazar por tu TruekLogoWidget)
+                // Logo temporal (puedes reemplazar por tu TruekLogoWidget)
                 Icon(
                   Icons.swap_horiz,
                   size: 20.w,
@@ -92,7 +96,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 SizedBox(height: 6.h),
 
-                // Title
+                // Título
                 Text(
                   'Welcome Back',
                   textAlign: TextAlign.center,
@@ -111,16 +115,16 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 SizedBox(height: 4.h),
 
-                // Login Form
+                // Formulario de login
                 Form(
                   key: _formKey,
                   child: Column(
                     children: [
-                      // Email field
+                      // Email
                       TextFormField(
                         controller: _emailController,
                         keyboardType: TextInputType.emailAddress,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           labelText: 'Email',
                           prefixIcon: Icon(Icons.email),
                         ),
@@ -136,11 +140,11 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       SizedBox(height: 2.h),
 
-                      // Password field
+                      // Password
                       TextFormField(
                         controller: _passwordController,
                         obscureText: true,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           labelText: 'Password',
                           prefixIcon: Icon(Icons.lock),
                         ),
@@ -156,7 +160,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       SizedBox(height: 4.h),
 
-                      // Login button
+                      // Botón de login
                       SizedBox(
                         width: double.infinity,
                         height: 7.h,
@@ -174,7 +178,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 SizedBox(height: 4.h),
 
-                // Sign Up link
+                // Enlace de registro
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

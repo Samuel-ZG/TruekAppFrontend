@@ -11,10 +11,10 @@ class ApiClient {
   ApiClient._internal() {
     dio = Dio(
       BaseOptions(
-        baseUrl:
-            'https://app-truekapp.azurewebsites.net/api', // URL base de tu API
-        connectTimeout: const Duration(seconds: 5), // ✅ Duration
-        receiveTimeout: const Duration(seconds: 5), // ✅ Duration
+        // Usa la URL correcta de la API desplegada
+        baseUrl: 'https://truekapp.azurewebsites.net/api',
+        connectTimeout: const Duration(seconds: 10),
+        receiveTimeout: const Duration(seconds: 10),
         headers: {'Content-Type': 'application/json'},
       ),
     );
